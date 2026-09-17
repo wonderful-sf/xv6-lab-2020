@@ -38,6 +38,10 @@ start()
   w_mideleg(0xffff);
   w_sie(r_sie() | SIE_SEIE | SIE_STIE | SIE_SSIE);
 
+  // Give supervisor mode access to physical memory on PMP-enabled CPUs.
+  asm volatile("csrw pmpaddr0, %0" : : "r" (0x3fffffffffffffull));
+  asm volatile("csrw pmpcfg0, %0" : : "r" (0xfull));
+
   // ask for clock interrupts.
   timerinit();
 
