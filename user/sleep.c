@@ -5,11 +5,9 @@ int
 main(int argc, char *argv[])
 {
   if(argc != 2) {
-	  fprintf(2,"Invalid argument\n");
+	  fprintf(2,"Usage: sleep ticks\n");
 	  exit(1);
   }
-  else{
 	  sleep(atoi(argv[1]));
 	  exit(0);
-  }
 }
